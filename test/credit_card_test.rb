@@ -54,7 +54,7 @@ class CreditCardTest < Minitest::Test
 
     amex.charge(person, 150)
 
-    refute_equal(0, amex.balance)
+    assert_equal(0, amex.balance)
   end
 
   def test_balance_can_be_paid_down
