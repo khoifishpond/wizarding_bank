@@ -18,4 +18,13 @@ class CreditCardTest < Minitest::Test
 
     assert_equal("Minerva", amex.person.name)
   end
+
+  def test_credit_has_limit
+    amex = CreditCard.new("AMEX")
+    person = Person.new("Minerva", 1000)
+
+    amex.open_credit(person, 100, 0.5)
+
+    assert_equal(100, amex.limit)
+  end
 end
