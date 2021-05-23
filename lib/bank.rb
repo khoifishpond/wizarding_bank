@@ -1,14 +1,16 @@
 require './lib/account'
 
 class Bank
-  attr_reader :name, :account
+  attr_reader :name, :account, :all_accounts
 
   def initialize(name)
     @name = name
+    @all_accounts = []
   end
 
   def open_account(person)
-    @account = Account.new(person)
+    @all_accounts << Account.new(person)
+    @account = @all_accounts.last
   end
 
   def deposit(person, amount)
@@ -34,5 +36,12 @@ class Bank
       @account.send_transfer(amount)
       bank.account.receive_transfer(amount)
     end
+  end
+
+  def all_funds
+    total_cash = 0
+    @all_accounts.each { |account| total_cash += account.balance }
+
+    total_cash
   end
 end
