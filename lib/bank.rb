@@ -27,7 +27,12 @@ class Bank
     end
   end
 
-  def transfer(person, bank, amount
-    
+  def transfer(person, bank, amount)
+    if bank.account.nil?
+      "#{person.name} does not have an account with #{bank.name}."
+    else
+      @account.send_transfer(amount)
+      bank.account.receive_transfer(amount)
+    end
   end
 end
