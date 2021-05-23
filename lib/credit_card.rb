@@ -23,7 +23,11 @@ class CreditCard
   end
 
   def pay_off(person, amount)
-    person.pay_off_credit_card(amount)
-    @balance -= amount
+    if amount > person.cash
+      "Insufficient cash!"
+    else
+      person.pay_off_credit_card(amount)
+      @balance -= amount
+    end
   end
 end
