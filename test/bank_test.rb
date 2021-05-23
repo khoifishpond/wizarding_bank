@@ -1,4 +1,5 @@
 require 'minitest/autorun'
+require 'minitest/pride'
 require './lib/bank'
 require './lib/account'
 require './lib/person'
@@ -85,5 +86,27 @@ class BankTest < Minitest::Test
       "Minerva does not have an account with JP Morgan Chase.",
       wells_fargo.transfer(person, chase, 250)
     )
+  end
+
+  def test_bank_can_have_multiple_accounts
+    wells_fargo = Bank.new("Wells Fargo")
+    person_1 = Person.new("Minerva", 1000)
+    person_2 = Person.new("Luna", 500)
+    wells_fargo.open_account(person_1)
+    wells_fargo.open_account(person_2)
+
+    assert_equal(2, wells_fargo.all_accounts.size)
+  end
+
+  def test_bank_sum_all_funds_in_accounts
+    wells_fargo = Bank.new("Wells Fargo")
+    person_1 = Person.new("Minerva", 1000)
+    person_2 = Person.new("Luna", 500)
+    wells_fargo.open_account(person_1)
+    wells_fargo.open_account(person_2)
+    wells_fargo.deposit(person_1, 500)
+    wells_fargo.deposit(person_2, 500)
+
+    assert_equal(1000, wells_fargo.all_funds)
   end
 end
