@@ -68,4 +68,15 @@ class CreditCardTest < Minitest::Test
 
     assert_equal(0, amex.balance)
   end
+
+  def test_cannot_pay_with_more_than_cash_on_hand
+    amex = CreditCard.new("AMEX")
+    person = Person.new("Minerva", 10)
+    amex.open_credit(person, 100, 0.5)
+    amex.charge(person, 25)
+
+    amex.pay_off(person, 25)
+
+    refute_equal(0, amex.balance)
+  end
 end
