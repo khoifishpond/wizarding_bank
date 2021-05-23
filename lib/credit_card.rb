@@ -1,3 +1,5 @@
+require './lib/person'
+
 class CreditCard
   attr_reader :bank, :person, :limit, :interest, :balance
 
@@ -18,5 +20,10 @@ class CreditCard
     else
       @balance += amount
     end
+  end
+
+  def pay_off(person, amount)
+    person.pay_off_credit_card(amount)
+    @balance -= amount
   end
 end
