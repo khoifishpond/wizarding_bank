@@ -30,7 +30,6 @@ class BankTest < Minitest::Test
     wells_fargo.open_account(person)
 
     wells_fargo.deposit(person, 750)
-
     assert_equal(750, wells_fargo.account.balance)
   end
 
@@ -75,7 +74,7 @@ class BankTest < Minitest::Test
     assert_equal(250, chase.account.balance)
   end
 
-  def test_bank_cannot_transfer_funds_to_another_bank
+  def test_bank_cannot_transfer_funds_to_another_bank_with_no_account
     wells_fargo = Bank.new("Wells Fargo")
     chase = Bank.new("JP Morgan Chase")
     person = Person.new("Minerva", 1000)
