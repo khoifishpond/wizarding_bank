@@ -1,7 +1,7 @@
 require './lib/account'
 
 class Bank
-  attr_reader :name, :account, :balance
+  attr_reader :name, :account
 
   def initialize(name)
     @name = name
