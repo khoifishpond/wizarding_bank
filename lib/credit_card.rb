@@ -1,5 +1,5 @@
 class CreditCard
-  attr_reader :bank, :person
+  attr_reader :bank, :person, :limit, :interest
 
   def initialize(bank)
     @bank = bank
