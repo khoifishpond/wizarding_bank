@@ -47,15 +47,14 @@ class CreditCardTest < Minitest::Test
     assert_equal(25, amex.balance)
   end
 
-  def test_credit_can_be_charged
+  def test_credit_cannot_be_charged_over_limit
     amex = CreditCard.new("AMEX")
     person = Person.new("Minerva", 1000)
     amex.open_credit(person, 100, 0.5)
 
     amex.charge(person, 150)
 
-    assert_equal("Transaction declined.", amex.charge(person, 150))
-    assert_equal(0, amex.balance)
+    refute_equal(0, amex.balance)
   end
 
   def test_balance_can_be_paid_down
