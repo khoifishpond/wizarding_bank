@@ -13,4 +13,8 @@ class Person
   def withdraw(amount)
     @cash += amount
   end
+
+  def pay_off_credit_card(amount)
+    @cash -= amount
+  end
 end
